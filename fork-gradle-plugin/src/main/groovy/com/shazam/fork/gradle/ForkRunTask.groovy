@@ -73,7 +73,9 @@ class ForkRunTask extends DefaultTask implements VerificationTask {
 
     PoolingStrategy poolingStrategy
 
-    boolean autoGrantPermissions;
+    boolean autoGrantPermissions
+
+    boolean screenRecording = true
 
     @TaskAction
     void runFork() {
@@ -99,6 +101,7 @@ class ForkRunTask extends DefaultTask implements VerificationTask {
                 .withCoverageEnabled(isCoverageEnabled)
                 .withPoolingStrategy(poolingStrategy)
                 .withAutoGrantPermissions(autoGrantPermissions)
+                .withScreenRecording(screenRecording)
                 .build();
 
         boolean success = new Fork(configuration).run()

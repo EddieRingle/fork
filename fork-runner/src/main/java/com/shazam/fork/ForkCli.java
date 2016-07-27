@@ -99,6 +99,7 @@ public class ForkCli {
                     .withCoverageEnabled(forkConfiguration.isCoverageEnabled)
                     .withPoolingStrategy(forkConfiguration.poolingStrategy)
                     .withAutoGrantPermissions(forkConfiguration.autoGrantPermissions)
+                    .withScreenRecording(forkConfiguration.screenRecording)
                     .build();
 
             Fork fork = new Fork(configuration);

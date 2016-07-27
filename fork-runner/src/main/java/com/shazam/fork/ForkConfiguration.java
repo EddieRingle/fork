@@ -94,6 +94,8 @@ public class ForkConfiguration {
      */
     public boolean autoGrantPermissions = true;
 
+    public boolean screenRecording = true;
+
     public void poolingStrategy(Closure<?> poolingStrategyClosure) {
         poolingStrategy = new PoolingStrategy();
         poolingStrategyClosure.setDelegate(poolingStrategy);
