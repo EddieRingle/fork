@@ -42,7 +42,7 @@ public class RemoteFileManager {
     }
 
     public static String getCoverageFileName(String testClassName) {
-        return COVERAGE_DIRECTORY + "/" + testClassName + ".ec";
+        return COVERAGE_DIRECTORY + "/coverage.ec";
     }
 
     public static void createRemoteDirectory(IDevice device) {

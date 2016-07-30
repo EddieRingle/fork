@@ -14,21 +14,25 @@ package com.shazam.fork.runner;
 
 import com.android.ddmlib.testrunner.IRemoteAndroidTestRunner;
 import com.shazam.fork.model.Device;
+import com.shazam.fork.model.Pool;
 import com.shazam.fork.model.TestCaseEvent;
+
+import java.util.Queue;
 
 import javax.annotation.Nullable;
 
 public class TestRunParameters {
-	private final TestCaseEvent test;
+	private final Queue<TestCaseEvent> testQueue;
 	private final String testPackage;
 	private final String testRunner;
 	private final boolean isCoverageEnabled;
 	private final IRemoteAndroidTestRunner.TestSize testSize;
 	private final int testOutputTimeout;
 	private final Device device;
+	private final Pool pool;
 
-	public TestCaseEvent getTest() {
-		return test;
+	public Queue<TestCaseEvent> getTestQueue() {
+		return testQueue;
 	}
 
 	public String getTestPackage() {
@@ -56,21 +60,26 @@ public class TestRunParameters {
 		return isCoverageEnabled;
 	}
 
+	public Pool getPool() {
+		return pool;
+	}
+
 	public static class Builder {
-		private TestCaseEvent test;
+		private Queue<TestCaseEvent> testQueue;
 		private String testPackage;
 		private String testRunner;
 		private boolean isCoverageEnabled;
 		private IRemoteAndroidTestRunner.TestSize testSize;
 		private Device device;
 		private int testOutputTimeout;
+		private Pool pool;
 
 		public static Builder testRunParameters() {
 			return new Builder();
 		}
 
-		public Builder withTest(TestCaseEvent test) {
-			this.test = test;
+		public Builder withTestQueue(Queue<TestCaseEvent> testQueue) {
+			this.testQueue = testQueue;
 			return this;
 		}
 
@@ -104,18 +113,24 @@ public class TestRunParameters {
 			return this;
 		}
 
+		public Builder withPool(Pool pool) {
+			this.pool = pool;
+			return this;
+		}
+
 		public TestRunParameters build() {
 			return new TestRunParameters(this);
 		}
 	}
 
 	private TestRunParameters(Builder builder) {
-		test = builder.test;
+		testQueue = builder.testQueue;
 		testPackage = builder.testPackage;
 		testRunner = builder.testRunner;
 		testSize = builder.testSize;
 		testOutputTimeout = builder.testOutputTimeout;
 		device = builder.device;
 		isCoverageEnabled = builder.isCoverageEnabled;
+		pool = builder.pool;
 	}
 }
